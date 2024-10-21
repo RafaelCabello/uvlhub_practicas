@@ -79,6 +79,7 @@ def edit_notepad(notepad_id):
         )
     return render_template('notepad/edit.html', form=form, notepad=notepad)
 
+
 '''
 DELETE
 '''
