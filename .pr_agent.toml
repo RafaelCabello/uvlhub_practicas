@@ -1,6 +1,6 @@
 [pr_reviewer] # /review #
 # enable/disable features
-require_score_review=false
+require_score_review=true
 require_tests_review=true
 require_estimate_effort_to_review=true
 require_can_be_split_review=false
@@ -25,4 +25,3 @@ enable_intro_text=true
 enable_help_text=false # Determines whether to include help text in the PR review. Enabled by default.
 # auto approval
 enable_auto_approval=true
-maximal_review_effort=5
