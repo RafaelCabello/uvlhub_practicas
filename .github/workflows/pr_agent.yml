@@ -15,8 +15,9 @@ jobs:
     steps:
       - name: Run CodiumAI PR-Agent
         uses: Codium-ai/pr-agent@main
-        with:
+        env:
           # Configure the PR-Agent to respond only when a review is requested
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           github_action_config.auto_review: "true"
           github_action_config.auto_describe: "false"
           github_action_config.auto_improve: "false"
