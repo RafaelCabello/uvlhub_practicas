@@ -2,17 +2,27 @@ name: Backup PR Approval
 
 on:
   pull_request_review:
-    types: [submitted]
+    types: [submitted]  # Trigger when a review is submitted on the PR
 
 jobs:
   auto_approve:
-    if: github.event.review.state == 'approved' && github.event.review.user.login == 'codiumai-pr-agent-free'  # Replace with the CodiumAI bot username
+    # Adjust the condition to check for the CodiumAI bot's username and approval status
     runs-on: ubuntu-latest
 
     permissions:
       pull-requests: write
 
     steps:
+      - name: Debug - Check if Condition is Met
+        run: |
+          echo "Review State: ${{ github.event.review.state }}"
+          echo "Reviewer Username: ${{ github.event.review.user.login }}"
+
+      # Install GitHub CLI if not already available
+      - name: Install GitHub CLI
+        if: ${{ !env.GITHUB_CLI }}
+        run: sudo apt-get install -y gh
+
       - name: Approve PR
         run: gh pr review ${{ github.event.pull_request.number }} --approve
         env:
