@@ -1,0 +1,19 @@
+name: Backup PR Approval
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  auto_approve:
+    if: github.event.review.state == 'approved' && github.event.review.user.login == 'codiumai-pr-agent-free'  # Replace with the CodiumAI bot username
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Approve PR
+        run: gh pr review ${{ github.event.pull_request.number }} --approve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
