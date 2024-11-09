@@ -2,7 +2,7 @@ name: CodiumAI PR-Agent on Review Request
 
 on:
   pull_request:
-    types: [review_requested]  # Trigger only when a review is requested
+    types: [opened]
 
 jobs:
   codium_review:
