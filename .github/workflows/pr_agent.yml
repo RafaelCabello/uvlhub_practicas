@@ -1,0 +1,22 @@
+name: CodiumAI PR-Agent on Review Request
+
+on:
+  pull_request:
+    types: [review_requested]  # Trigger only when a review is requested
+
+jobs:
+  codium_review:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - name: Run CodiumAI PR-Agent
+        uses: Codium-ai/pr-agent@main
+        with:
+          # Configure the PR-Agent to respond only when a review is requested
+          github_action_config.auto_review: "true"
+          github_action_config.auto_describe: "false"
+          github_action_config.auto_improve: "false"
